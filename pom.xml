@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.tmhp</groupId>
+    <artifactId>sso-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>sso-parent</name>
+    <description>sso-parent父工程</description>
+  
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.2.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    
+    <properties>
+        <sso.version>0.0.1-SNAPSHOT</sso.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        
+        <!-- json -->
+        <fastjson.version>1.2.4</fastjson.version>
+    </properties>
+    
+    <modules>
+        <module>sso-client</module>
+        <module>sso-server</module>
+        <module>sso-server-web</module>
+    </modules>
+    
+    <!-- 用于父项目配置共同的依赖关系，主要配置依赖包相同因素，如版本，scope。 -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.tmhp.sso</groupId>
+                <artifactId>sso-server</artifactId>
+                <version>${sso.version}</version>
+            </dependency>
+            
+            <!-- json begin -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <!-- json end -->
+        </dependencies>
+    </dependencyManagement>
+    
+</project>
