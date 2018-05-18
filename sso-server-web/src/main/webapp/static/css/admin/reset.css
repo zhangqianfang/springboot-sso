@@ -1,0 +1,37 @@
+.pager-box div.zxf_pagediv{
+    text-align: right;
+}
+.pager-box div.zxf_pagediv a,.pager-box div.zxf_pagediv span{
+    text-align: center;
+    border-radius: 5px;
+}
+.pager-box .nextbtn, .pager-box .prebtn{
+    width: 33px;
+    border-radius: 5px;
+}
+.pager-box .current{
+    background: #2DB7F5;
+}
+.pager-box .nextpage{
+    color: #999999;
+    border: 1px solid #dfdfdf;
+}
+.pager-box .zxfinput{
+    border-radius: 5px;
+    font-size: 16px;
+}
+.pager-box div.zxf_pagediv span{
+    padding-right: 10px;
+}
+.pager-box div.zxf_pagediv span:last-child{
+    padding: 0;
+}
+.pager-box span.disabled{
+    width: 35px;
+}
+.pager-box div.zxf_pagediv span.current{
+    padding-right: 0;
+}
+.pager-box div.zxf_pagediv span.disabled{
+    padding-right: 0;
+}
