@@ -2,7 +2,6 @@ package com.tmhp.ssoclient;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
 /***
  * 客户端启动类
@@ -10,7 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
  * @date 2018年5月16日
  */
 @SpringBootApplication
-@ComponentScan(value = "com.tmhp")
 public class SsoClientApplication {
 
     public static void main(String[] args) {

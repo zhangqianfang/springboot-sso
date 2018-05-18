@@ -8,7 +8,7 @@ package com.tmhp.ssoserver.domain;
 public class User {
 
     /* 用户ID */
-    private Integer userId;
+    private int userId;
     /* 用户名称 */
     private String username;
     /* 密码 */
@@ -16,7 +16,11 @@ public class User {
     /* 验证码 */
     private String verifyCode;
 
-    public User(Integer userId) {
+    public User() {
+
+    }
+
+    public User(int userId) {
         this.userId = userId;
     }
 
@@ -25,7 +29,7 @@ public class User {
         this.password = password;
     }
 
-    public Integer getUserId() {
+    public int getUserId() {
         return this.userId;
     }
 

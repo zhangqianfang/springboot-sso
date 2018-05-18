@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -53,7 +54,7 @@ public class SSOServer {
                 return "login";
             }
         }
-        return "/error/404";
+        return "error/404";
     }
 
     /***
@@ -102,12 +103,15 @@ public class SSOServer {
     @RequestMapping("/logout")
     public String logout(HttpServletRequest request) {
         String clientUrl = request.getParameter("clientUrl");
+        if (StringUtils.isEmpty(clientUrl)) {
+            clientUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+        }
         HttpSession session = request.getSession();
         session.setAttribute("clientUrl", clientUrl);
         if (session.getId() != null) {
             // 删除全局session
-            this.sessionService.removeSession(request.getSession().getId());
             User userinfo = this.sessionService.getUserinfoBySessionId(request.getSession().getId());
+            this.sessionService.removeSession(request.getSession().getId());
             System.out.println("用户" + userinfo + "登出成功！");
             request.setAttribute("clientUrl", clientUrl + "?ticket=" + this.ticketService.creatTicket(session.getId()));
             return "login";

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -42,9 +44,12 @@ public class SSOServerLogin {
      * @throws IOException
      */
     @RequestMapping("/login")
-    public void login(User user, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void login(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setCharacterEncoding("UTF-8");
         String clientUrl = request.getParameter("clientUrl");
+        if (StringUtils.isEmpty(clientUrl)) {
+            clientUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+        }
         String verifyCode = (String) request.getSession().getAttribute(VerifyCodeUtil.SESSION_SECURITY_CODE);
         // 验证码校验
         if (verifyCode != null) {
